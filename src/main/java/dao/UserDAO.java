@@ -17,8 +17,6 @@ public class UserDAO {
 	private String id = "shun04321";
 	private String pw = "awstbs421!";
 	
-	
-	
 	public UserDAO() {
 		
 		try {
@@ -28,8 +26,6 @@ public class UserDAO {
 		catch(Exception e) {
 			System.out.println(e);
 		}
-		
-		
 		
 	}
 	
@@ -75,7 +71,8 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(rs.getString(1).equals(user_pwd)) return 1; //로그인 성공
+				if(user_id.equals("admin") && rs.getString(1).equals(user_pwd)) return 1; //관리자 로그인 성공 
+				else if(rs.getString(1).equals(user_pwd)) return 2; //사용자 로그인 성공
 				else return 0; //비밀번호 불일치
 			}
 			return -1; //존재하지 않는 아이디
@@ -106,4 +103,3 @@ public class UserDAO {
 		return false;
 	}
 }
-

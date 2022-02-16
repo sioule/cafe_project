@@ -70,7 +70,12 @@
                 color:rgb(164, 164, 164);
                 margin:10px 0px;
             }
-     
+     	a{
+     			text-align: center;
+                font-size:12pt;
+                color:rgb(164, 164, 164);
+                margin:10px 0px;
+     }
     
 	</style>
 	
@@ -117,7 +122,10 @@
            
             <input type="submit" value="SIGN IN">
             
-            <div id="forgot">Forgot your password? </div>
+            <div id="forgot">Forgot your password? <p>
+            
+            <a href ="member.jsp" style="text-decoration:none">SIGN UP</a>
+            </div>
 
 
 

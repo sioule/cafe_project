@@ -18,42 +18,47 @@
 <%request.setCharacterEncoding("UTF-8");%>
 
 <% 
-
 	String userID = null;
 	
 	String userPassword = null;
 	
-	if(request.getParameter("userID") != null) {
+	if(request.getParameter("id") != null) {
 	
-		userID = (String) request.getParameter("userID");
+		userID = (String) request.getParameter("id");
+	
+	}
+	
+	if(request.getParameter("password") != null) {
+	
+		userPassword = (String) request.getParameter("password");
 	
 	}
 	
-	if(request.getParameter("userPassword") != null) {
-	
-		userPassword = (String) request.getParameter("userPassword");
-	
-	}
-
 	UserDAO userDAO = new UserDAO();
-
 	int result = userDAO.login(userID, userPassword); // userDAO객체의 login메소드에서 리턴된 값
 	
-	if(result == 1){
-		session.setAttribute("userID", userID);
-
+	if(result == 1){ //관리자 페이지
+		session.setAttribute("id", userID);
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인 성공')");
-		script.println("location.href='index.jsp'");
+		script.println("location.href='./../admin/admin_index.jsp'");
 		script.println("</script>");
-	}else if(result == 0){
+	}else if(result == 2){ // 사용자페이지
+		session.setAttribute("id", userID);
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인 성공')");
+		script.println("location.href='./../index/index.jsp'");
+		script.println("</script>");
+	}
+	else if(result == 0){ //비밀번호 오류
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('비밀번호가 틀립니다')");
 		script.println("history.back()");
 		script.println("</script>");
-	}else if(result == -1){
+	}else if(result == -1){ //아이디 없음
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('존재하지 않는 아이디입니다')");
@@ -69,8 +74,6 @@
 	
 	
 %>
-
-
 
 </body>
 </html>
