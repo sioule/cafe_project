@@ -1,14 +1,127 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="dao.*"%>
 <%@ page import="dto.*"%>
-<!DOCTYPE html>
+
+
+<!DOCTYPE html>//수정
 <html>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
-    <title>회원 가입</title>
-    <script language="javascript">
+<meta charset="UTF-8">
+<title>JOIN US</title>
+<style>
+	body {
+		font-size: 12px;
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif; 
+	}
+	
+	label{
+		background:#C4C8CC;
+		height:30;
+		width:100px;
+	}
+	
+	.input {
+		width:10%;
+		height:20px;;
+		border:1px solid #C4C8CC;
+		padding-top:5px; 
+		font-size: 12px;
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif; 
+		vertical-align: middle;
+	}
+	
+	input {
+		width:20%;
+		height:20px;
+		border:1px solid #C4C8CC;
+		padding:5px; 
+		font-size: 12px;
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif; 
+		vertical-align: middle;
+	}
+	
+	input.button {
+		width:12%;
+		height:30px;
+		font-size: 10px;
+	}
+	
+	input.add {
+		width:40%;
+	}
+	
+	textarea{
+		width:99%;
+		height:300px;;
+		border:1px solid #C4C8CC;
+		padding-top:6px; 
+		font-size: 12px;
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif; 
+	}
+	
+	table.list {
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
+	    font-weight: 400;
+	    border-spacing: 0;
+	    border-collapse: collapse;
+	    line-height: 60px;
+	    color: #4e4c4a;
+	    font-size: 12px;
+	    letter-spacing: -0.3px;
+	    word-break: break-all;
+    	word-wrap: break-word;
+	    padding: 30px 0;
+	    vertical-align: middle;
+	    width: 75%;
+	    position: relative;
+	    margin: 20px 0 0;
+	    border: 1px solid #eeeeee;
+	}
+	
+	tr {
+		border: 1px solid #eeeeee;
+	}
+	h2 {
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
+	    font-size: 25px;
+	    line-height: 30px;
+	    font-weight: 300;
+	    color: rgb(65, 74, 67);
+	    font-color: #414a43;
+	}
+	
+	input.joinus {
+	    font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
+	    cursor: pointer;
+	    display: inline-block;
+	    box-sizing: border-box;
+	    border: 1px solid transparent;
+	    text-decoration: none;
+	    vertical-align: middle;
+	    letter-spacing: -0.3px;
+	    text-align: center;
+	    white-space: nowrap;
+	    transition: 0.2s ease-in-out;
+	    color: #ffffff;
+	    background-color: #222222;
+	    word-break: keep-all;
+	    word-wrap: break-word;
+	    width: 150px;
+	    height: 45px;
+	    line-height: 30px;
+	    padding: 0;
+	    font-size: 14px;
+	    font-weight: 400;
+	}
+</style>
+<script language="javascript">
+function idCheck() {
+	var id = join.id.value;
+	var url = "./idCheck.jsp?id=" + id;
+	window.open(url, "get", "height = 180, width = 300");
+}
             function validate() {
                 var re1 = /^[a-z0-9]{4,16}$/ // 아이디가 적합한지 검사할 정규식
                 var re2 = /^[a-zA-Z0-9#?!@$%^&*-]{8,16}$/ // 비밀번호가 적합한지 검사할 정규식
@@ -30,6 +143,7 @@
  
                 // ------------ 이메일 까지 -----------
  
+	 			
                 if(!check(re1,user_id,"아이디는 4~16자의 영문 소문자,숫자로만 입력")) {
                     return false;
                 }
@@ -110,9 +224,20 @@
                 what.focus();
                 //return false;
             }
-        </script>
-        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-        <script>
+            
+            function idCheck() {
+            	var id = join.id.value;
+            	var url = "./idCheck.jsp?id=" + id;
+                var width = "300";
+                var height = "180";
+                var left = Math.ceil(( window.screen.width - width )/2);
+                var top = Math.ceil(( window.screen.height - height )/2); 
+             
+            	window.open(url, "get", "width=" + width + ", height=" + height + ", left=" + left + ", top=" + top);
+            }
+</script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
                 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
                 function sample4_execDaumPostcode() {
                     new daum.Postcode({
@@ -153,11 +278,11 @@
                             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
                             if(data.autoRoadAddress) {
                                 var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                                guideTextBox.innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(예상 도로명 주소 : ' + expRoadAddr + ')';
                                 guideTextBox.style.display = 'block';
                             } else if(data.autoJibunAddress) {
                                 var expJibunAddr = data.autoJibunAddress;
-                                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                                guideTextBox.innerHTML = '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(예상 지번 주소 : ' + expJibunAddr + ')';
                                 guideTextBox.style.display = 'block';
                             } else {
                                 guideTextBox.innerHTML = '';
@@ -166,16 +291,11 @@
                         }
                     }).open();
                 }
-      	</script>
-	<style>
-	table {
-		border-collapse: collapse;
-	}
-	</style>
-<link href="./../css/mypage.css" rel="stylesheet" type="text/css" />
+</script>
 </head>
 
 <body>
+
 <!-- 정민지 -->
 
 	<%
@@ -187,91 +307,99 @@
 		
 		UserDTO udto = udao.getUser(user_id);
 	%>
-
-
-	<br>
-	<br>
-	<br>
-		<form name="join" onsubmit="return validate();" method="post" action="modify_action.jsp">
-		<h1 align="center">Modify</h1>
-		<br>
-		<!--<input type="hidden" name="ip" value="<%=request.getRemoteAddr()%>"/>-->
-		<table border="1" width="600" height="100" align="center">
-
-	<tr>
-		<td align="center" width="150" height="50" bgcolor="#EBEBEB">아이디<font color="blue">*</font></td>
-		<td>
-		&nbsp&nbsp
-		<!-- 아이디는 변경 불가능 -->
-		<input name="id" id="id" type="text" value="<%=udto.getUserID()%>" readonly="readonly" size="15" maxlength="16"> 
-		&nbsp<font size="1">(*변경 불가능)</font>
-		</td>
-	</tr>
-	<tr>
-		<td align="center" width="150" height="50" bgcolor="#EBEBEB">비밀번호<font color="blue">*</font></td>
-		<td>
-		&nbsp&nbsp<input name="pwd" id="pwd"type="password" size="15" maxlength="16">
-		&nbsp<font size="1">(영문 대소문자,숫자,특수문자를 조합하여 8~16자)</font>
-		</td>
-	</tr>
-	<tr>
-		<td align="center" width="150" height="50" bgcolor="#EBEBEB">비밀번호 확인<font color="blue">*</font></td>
-		<td>
-		&nbsp&nbsp<input name="checkpwd" id="checkpwd" type="password" size="15" maxlength="16">
-		</td>
-	</tr>
-	<tr>
-		<td align="center" width="150" height="50" bgcolor="#EBEBEB">이름<font color="blue">*</font></td>
-		<td>
-		&nbsp&nbsp<input name="name" id="name" value="<%=udto.getUserName()%>" type="text" size="15">
-		</td>
-	</tr>
-	<tr>
-		<td align="center" width="150" height="50" bgcolor="#EBEBEB">휴대전화<font color="blue">*</font></td>
-		<td>
-			&nbsp&nbsp
-			<select name="phone1" id="phone1">
-				<option value="010">010</option>
-				<option value="011">011</option>
-				<option value="016">016</option>
-				<option value="017">017</option>
-				<option value="019">019</option>
-			</select>
-		-
-		<input name="phone2" id="phone2" type="text" size="4" maxlength="4">
-		-
-		<input name="phone3" id="phone3" type="text" size="4" maxlength="4">
-		</td>
-	</tr>
-	<tr>
-		<td align="center" width="150" height="50" bgcolor="#EBEBEB">이메일<font color="blue">*</font></td>
-		<td>
-		&nbsp&nbsp
+	
+<div align="center">
+		<form name="join" onsubmit="return validate();" method="post" action="./../mypage/modify_action.jsp">
+		<br><br><br><br><br><br>
+	
+		<!-- TITLE START -->
+		<table width="800" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="800" height="50">
+				<h2>Modify</h2>
+				</td>
+			</tr>
+		</table>
+		<!-- TITLE END -->
 		
-		<input name="email" id="email" type="text" size="30"  value="<%=udto.getUser_email()%>">
+		<br><br><br><br><br>
+		<!--<input type="hidden" name="ip" value="<%=request.getRemoteAddr()%>"/>-->
+		<table class="list" border="1" align="center">
+	<tr>
+		<td align="center" width="150" height="50" bgcolor="#eeeeee">아이디<font color="blue">*</font></td>
+		<td>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input name="id" id="id" type="text" value="<%=udto.getUserID()%>" readonly="readonly" size="15" maxlength="16">
+		&nbsp *변경불가능
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="150" height="50" bgcolor="#eeeeee">비밀번호<font color="blue">*</font></td>
+		<td>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input name="pwd" id="pwd"type="password" size="15" maxlength="16">
+		&nbsp<font size="1">(영문 대소문자/숫자/특수문자, 8~16자)</font>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="150" height="50" bgcolor="#eeeeee">비밀번호 확인<font color="blue">*</font></td>
+		<td>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input name="checkpwd" id="checkpwd" type="password" size="15" maxlength="16">
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="150" height="50" bgcolor="#eeeeee">이름<font color="blue">*</font></td>
+		<td>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input name="name" id="name" value="<%=udto.getUserName()%>" type="text" size="15"> 
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="150" height="50" bgcolor="#eeeeee">휴대전화<font color="blue">*</font></td>
+		<td>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<select name="phone1" class="input" style="height:30px;">
+			<option value="010">010</option>
+			<option value="011">011</option>
+			<option value="016">016</option>
+			<option value="017">017</option>
+			<option value="019">019</option>
+		</select>
+		-
+		<input name="phone2" class="input" id="phone2" type="text" size="4" maxlength="4">
+		-
+		<input name="phone3" class="input" id="phone3" type="text" size="4" maxlength="4">
+		</td>
+	</tr>
+	<tr>
+		<td align="center" width="150" height="50" bgcolor="#eeeeee">이메일<font color="blue">*</font></td>
+		<td>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input name="email" id="email" type="text" size="30" value="<%=udto.getUser_email()%>">
 		</td>
 	</tr>
 		<tr>
-		<td align="center" width="150" height="100" bgcolor="#EBEBEB">주소<font color="blue">*</font></td>
+		<td align="center" width="150" height="100" bgcolor="#eeeeee">주소<font color="blue">*</font></td>
 		<td>
-		<br>
-		&nbsp&nbsp
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 		<input type="text" id="sample4_postcode" name="addr1" placeholder="우편번호">
-		&nbsp
-		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		&nbsp&nbsp
-		<input type="text" id="sample4_roadAddress" name="addr2" placeholder="도로명주소" size="50" ><br>
-		<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="50">
-		<span id="guide" style="color:#999;display:none"></span>
-		&nbsp&nbsp<input type="text" id="sample4_detailAddress" name="addr3" placeholder="상세주소"  size="50"><br>
-		<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="50">
-		<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="50" ><br>
+		&nbsp&nbsp<input class="button" type="button"  onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input class="add" type="text" id="sample4_roadAddress" name="addr2" placeholder="도로명주소" size="50" ><br>
+		<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" size="50">
+		<span id="guide" style="color:#999; display:none"></span>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<input class="add" type="text" id="sample4_detailAddress" name="addr3" placeholder="상세주소"  size="50">
+		<input type="hidden" id="sample4_extraAddress" placeholder="참고항목" size="50">
+		<input type="hidden" id="sample4_engAddress" placeholder="영문주소" size="50" >
 		</td>
 	</tr> 
-		</table>
-		<h2 align="center"><input type="submit" id="modify_btn" value="회원 정보수정"></h2>
-		</form>
-	<br>
-	<br>
+	</table>
+	<br><br>
+		<h3 align="center"><input class="joinus" type="submit" value="Modify"></h3>
+	</form>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
 </body>
 </html>
